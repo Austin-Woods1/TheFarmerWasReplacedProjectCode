@@ -1,0 +1,116 @@
+clear()
+def carrots():
+	if num_items(Items.Wood) > 20 and num_items(Items.Hay) > 20:
+	
+		while num_items(Items.Wood) > 20 and num_items(Items.Hay) > 20:
+			
+			def move2():
+				while get_pos_y() < 5:
+					move(North)
+					if get_ground_type() != Grounds.Soil:
+						till()
+				
+					if can_harvest():
+						harvest()
+					if can_harvest() != True:
+						plant(Entities.Carrot)
+
+				move(East)
+				if get_ground_type() != Grounds.Soil:
+					till()
+				if can_harvest():
+					harvest()
+				if can_harvest() != True:
+					plant(Entities.carrot)
+				move(North)
+				if get_ground_type() != Grounds.Soil:
+					till()
+				if can_harvest():
+					harvest()
+				if can_harvest() != True:
+					plant(Entities.Carrot)
+					
+				if num_items(Items.Wood) > 20 and num_items(Items.Hay) > 20:
+					carrots()
+				elif num_items(Items.Wood) <= 20:
+					Wood()
+				elif num_items(Items.Hay) <= 20:
+					Grass()
+				move2()
+			move2()
+
+def Wood():
+	#if num_items(Items.Wood) <= 20:
+	
+		while num_items(Items.Wood) < 201:
+			
+			def move2():
+				while get_pos_y() < 5:
+					move(North)
+					if can_harvest():
+						harvest()
+					if can_harvest() != True:
+						plant(Entities.Bush)
+
+				move(East)
+				if can_harvest():
+					harvest()
+				if can_harvest() != True:
+					plant(Entities.Bush)
+				move(North)
+				if can_harvest():
+					harvest()
+				if can_harvest() != True:
+					plant(Entities.Bush)
+				if num_items(Items.Wood) > 200 and num_items(Items.Hay) > 200:
+					carrots()
+				elif num_items(Items.Wood) > 200 and num_items(Items.Hay) < 200:
+					Grass()
+				elif num_items(Items.Wood) < 200 and num_items(Items.Hay) > 200: 
+					Wood()
+				elif num_items(Items.Wood) < 200 and num_items(Items.Hay) < 200:
+					Wood()
+				move2()
+			move2()
+			
+
+
+
+def Grass():
+	if num_items(Items.Hay) < 20:
+	
+		while num_items(Items.Hay) < 201:
+			
+			def move2():
+				while get_pos_y() < 5:
+					move(North)
+					if can_harvest():
+						harvest()
+					if can_harvest() != True:
+						plant(Entities.Grass)
+
+				move(East)
+				if can_harvest():
+					harvest()
+				if can_harvest() != True:
+					plant(Entities.Grass)
+				move(North)
+				if can_harvest():
+					harvest()
+				if can_harvest() != True:
+					plant(Entities.Grass)
+				if num_items(Items.Wood) > 200 and num_items(Items.Hay) > 200:
+					carrots()
+				elif num_items(Items.Wood) > 200 and num_items(Items.Hay) < 200:
+					Grass()
+				elif num_items(Items.Wood) < 200 and num_items(Items.Hay) > 200: 
+					Wood()
+				elif num_items(Items.Wood) < 200 and num_items(Items.Hay) < 200:
+					Grass()
+				move2()
+			move2()
+			
+		
+Grass()
+Wood()
+carrots()
